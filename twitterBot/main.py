@@ -9,14 +9,12 @@ def publish():
 
     config = configparser.ConfigParser()
     config.read("../config/bot.conf")
-    
-    twitterConsumerKey = config.get("twitter").consumerKey
-    #"PrKFfSPiWmBqCW1uF2SHVbdRc"
-    twitterConsumerSecret = 'D2pwLXbvUAHuggbmiOunRKKC3zgEeupusLZ09pHphF6O4vpXJJ'
-    twitterAccessTokenKey = '930711782603350018-ehkGvUlOr8E2tZafX2stzXeWIj7lQjv'
-    twitterAccessTokenSecret = 'FnDAGhzXB2ST7jgZw1NQRlxwR4h1YhqtHiAHIiEp1O30S'
 
-    giphyToken = "ozGxgw025Wm1VtQlPPsmGF7p4AOG3Vef"
+    twitterConsumerKey = config.get("twitter").consumerKey
+    twitterConsumerSecret = config.get("twitter").consumerSecret
+    twitterAccessTokenKey = config.get("twitter").AccessTokenKey
+    twitterAccessTokenSecret = config.get("twitter").AccessTokenSecret
+    giphyToken = config.get("giphy").token
 
 
 
