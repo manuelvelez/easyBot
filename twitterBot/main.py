@@ -2,21 +2,23 @@ import twitter
 import random
 import giphypop
 import configparser
+import os
 
 
 def publish():
-
-
     config = configparser.ConfigParser()
-    config.read("../config/bot.conf")
 
-    twitterConsumerKey = config.get("twitter").consumerKey
-    twitterConsumerSecret = config.get("twitter").consumerSecret
-    twitterAccessTokenKey = config.get("twitter").AccessTokenKey
-    twitterAccessTokenSecret = config.get("twitter").AccessTokenSecret
-    giphyToken = config.get("giphy").token
+    for loc in os.curdir, os.path.expanduser("~"), "/etc/bot", os.environ.get("BOT_CONF"):
+        if os.path.isfile(loc + "/bot.conf"):
+            print(loc + "/bot.conf")
+            config.read(loc + "/bot.conf")
+            break
 
-
+    twitterConsumerKey = config["twitter"]["consumerKey"]
+    twitterConsumerSecret = config["twitter"]["consumerSecret"]
+    twitterAccessTokenKey = config["twitter"]["AccessTokenKey"]
+    twitterAccessTokenSecret = config["twitter"]["AccessTokenSecret"]
+    giphyToken = config["giphy"]["token"]
 
     twitterApi = twitter.Api(consumer_key=twitterConsumerKey,
                              consumer_secret=twitterConsumerSecret,
@@ -38,5 +40,3 @@ def publish():
         selectedGif = giphyApi.screensaver()
 
     twitterApi.PostUpdate(selectedTrend.name + " " + selectedGif.url)
-
-#Create a video with my pictures and ffmpg
