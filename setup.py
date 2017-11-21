@@ -8,5 +8,5 @@ setup(
     license='GNU',
     author='Manuel Vélez Martínez',
     author_email='manuelvelez@gmail.com',
-    description=''
+    description='', requires=['twitter', 'giphypop']
 )
